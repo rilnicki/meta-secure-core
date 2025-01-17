@@ -6,7 +6,7 @@ SRC_URI:append:class-target = " \
 "
 
 inherit deploy
-require ${@bb.utils.contains('DISTRO_FEATURES', 'efi-secure-boot', 'grub-bootconf-efi-secure-boot.inc', '', d)}
+require ${@bb.utils.contains('COMBINED_FEATURES', 'efi-secure-boot', 'grub-bootconf-efi-secure-boot.inc', '', d)}
 
 do_install:append:class-target() {
     rm ${D}${EFI_FILES_PATH}/grub.cfg

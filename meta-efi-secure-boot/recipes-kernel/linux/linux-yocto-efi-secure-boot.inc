@@ -1,7 +1,7 @@
 DEPENDS += "openssl-native"
 
 efi_secure_boot_sccs = "\
-    ${@bb.utils.contains('DISTRO_FEATURES', 'efi-secure-boot', \
+    ${@bb.utils.contains('COMBINED_FEATURES', 'efi-secure-boot', \
                          'cfg/efi-ext.scc', '', d)} \
 "
 KERNEL_FEATURES:append:x86 = " ${efi_secure_boot_sccs}"

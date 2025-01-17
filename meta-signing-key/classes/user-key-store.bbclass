@@ -1,15 +1,15 @@
 DEPENDS:append:class-target = " \
-    ${@bb.utils.contains("DISTRO_FEATURES", "efi-secure-boot", "sbsigntool-native", "", d)} \
-    ${@bb.utils.contains("DISTRO_FEATURES", "efi-secure-boot", "libsign-native", "", d)} \
+    ${@bb.utils.contains("COMBINED_FEATURES", "efi-secure-boot", "sbsigntool-native", "", d)} \
+    ${@bb.utils.contains("COMBINED_FEATURES", "efi-secure-boot", "libsign-native", "", d)} \
     openssl-native \
-    ${@bb.utils.contains("DISTRO_FEATURES", "efi-secure-boot", "efitools-native gnupg-native", "", d)} \
+    ${@bb.utils.contains("COMBINED_FEATURES", "efi-secure-boot", "efitools-native gnupg-native", "", d)} \
 "
 
 PSEUDO_IGNORE_PATHS .= ",${GPG_PATH}"
 USER_KEY_SHOW_VERBOSE = "1"
 
-UEFI_SB = '${@bb.utils.contains("DISTRO_FEATURES", "efi-secure-boot", "1", "0", d)}'
-MOK_SB ?= '${@bb.utils.contains("DISTRO_FEATURES", "efi-secure-boot", "1", "0", d)}'
+UEFI_SB = '${@bb.utils.contains("COMBINED_FEATURES", "efi-secure-boot", "1", "0", d)}'
+MOK_SB ?= '${@bb.utils.contains("COMBINED_FEATURES", "efi-secure-boot", "1", "0", d)}'
 MODSIGN = '${@bb.utils.contains("DISTRO_FEATURES", "modsign", "1", "0", d)}'
 IMA = '${@bb.utils.contains("DISTRO_FEATURES", "ima", "1", "0", d)}'
 SYSTEM_TRUSTED = '${@"1" if d.getVar("IMA") == "1" or d.getVar("MODSIGN") == "1" else "0"}'

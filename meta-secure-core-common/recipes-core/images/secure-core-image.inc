@@ -2,9 +2,9 @@ SUMMARY = "The root image of SecureCore."
 LICENSE = "MIT"
 
 SECURE_CORE_IMAGE_EXTRA_INSTALL:append = " \
-    ${@bb.utils.contains("DISTRO_FEATURES", "efi-secure-boot", \
+    ${@bb.utils.contains("COMBINED_FEATURES", "efi-secure-boot", \
                          "packagegroup-efi-secure-boot", "", d)} \
-    ${@bb.utils.contains("DISTRO_FEATURES", "tpm2", \
+    ${@bb.utils.contains("COMBINED_FEATURES", "tpm2", \
                          "packagegroup-tpm2", "", d)} \
     ${@bb.utils.contains("DISTRO_FEATURES", "ima", \
                          "packagegroup-ima", "", d)} \

@@ -94,7 +94,7 @@ do_deploy() {
 }
 addtask deploy after do_install before do_build
 
-RDEPENDS:${PN} += "${@bb.utils.contains('DISTRO_FEATURES', 'efi-secure-boot', 'ovmf-pkcs7-efi', '', d)}"
+RDEPENDS:${PN} += "${@bb.utils.contains('COMBINED_FEATURES', 'efi-secure-boot', 'ovmf-pkcs7-efi', '', d)}"
 
 FILES:${PN} += "${EFI_FILES_PATH}"
 
